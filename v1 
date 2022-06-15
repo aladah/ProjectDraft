@@ -1,0 +1,91 @@
+
+
+Def __init__(Zone, name)
+
+
+
+image_icon=PhotoImage(file="/Users/aladahmoore/Desktop/ProjectDraft/appIcon.png")
+#iconphoto method sets icon image
+#false arg means this only applies to root display
+root.iconphoto(False, image_icon)
+#selectable time zone
+#new frame
+f3=Frame(root,bd=5)
+f3.place(x=600,y=118,width=250,height=150)
+#label is a tkinter widget
+#label(parent, options)
+name3=Label(f3,font=("Helvetica", 30,"bold"))
+name3.place(x=40,y=100)
+#placeholder for image
+logo3=PhotoImage(file="/Users/aladahmoore/Desktop/ProjectDraft/appIcon.png")
+#creating clock variable
+clock3=Label(f3,font=("Helvetica", 20))
+clock3.place(x=5,y=80)
+
+
+def choice(value):
+    if value == 'Berlin':
+        #sets home time zone to b
+        home=pytz.timezone("Europe/Berlin")
+        #get local time of b
+        local_time3=datetime.now(home)
+        #formatting time
+        #a refers to day, b month, ...
+        current_time3=local_time3.strftime("%a %b %Y %H:%M:%S")
+        #config method used to access objects attributes after initialization
+        #this refers to clock variable in the timezone
+        clock3.config(text=current_time3)
+        #this refers to name variable in the timezone
+        name3.config(text="Berlin")
+        #allows for seconds to cycle
+        clock3.after(200)
+        logo3=PhotoImage(file="/Users/aladahmoore/Desktop/ProjectDraft/germany.png")
+    if value == 'Bangkok':
+        #sets home time zone to b
+        home=pytz.timezone("Asia/Bangkok")
+        #get local time of b
+        local_time=datetime.now(home)
+        #formatting time
+        #a refers to day, b month, ...
+        current_time=local_time.strftime("%a %b %Y %H:%M:%S")
+        #config method used to access objects attributes after initialization
+        #this refers to clock variable in the timezone
+        clock3.config(text=current_time)
+        #this refers to name variable in the timezone
+        name3.config(text='Bangkok')
+        logo3=PhotoImage(file="/Users/aladahmoore/Desktop/ProjectDraft/thail.png")
+        #allows for seconds to cycle
+        clock3.after(200, times)
+        
+
+
+timeZones = ['Berlin', 'Bangkok', 'Montreal', 'Madrid']
+
+variable = StringVar()
+variable.set(timeZones[0])
+
+#create the widget
+dropdown = OptionMenu(
+    root,
+    variable,
+    *timeZones,
+    command=choice(variable.get())
+)
+
+dropdown.config(width=10)
+dropdown.config(height=2)
+
+
+dropdown.pack()
+
+#select button
+selectButton = Button(root, text="Select", command=choice(variable.get()))
+selectButton.pack()
+
+
+
+
+
+
+
+choice(variable.get())
