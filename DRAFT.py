@@ -39,7 +39,7 @@ def getZone():
                 logos=ImageTk.PhotoImage(file=z.logo)
                 #change variable in label
                 logoLabel.config(image=logos)
-                #must keep a reference to change icon picture
+                #must keep a reference to change icon picture not sure why
                 logoLabel.photo_ref = logos
             
 
