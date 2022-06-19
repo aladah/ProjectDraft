@@ -58,8 +58,8 @@ timeZoneNames = []
 timeZone(pytz.timezone("Europe/Berlin"), "/Users/aladahmoore/Desktop/ProjectDraft/germany.png")
 timeZone(pytz.timezone("Asia/Bangkok"), "/Users/aladahmoore/Desktop/ProjectDraft/thail.png")
 timeZone(pytz.timezone("America/Montreal"), "/Users/aladahmoore/Desktop/ProjectDraft/canada.png")
-timeZone(pytz.timezone("Europe/Madrid"), "/Users/aladahmoore/Desktop/ProjectDraft/thail.png")
-timeZone(pytz.timezone("America/Vancouver"), "/Users/aladahmoore/Desktop/ProjectDraft/thail.png")
+timeZone(pytz.timezone("Europe/Madrid"), "/Users/aladahmoore/Desktop/ProjectDraft/spain.png")
+timeZone(pytz.timezone("America/Vancouver"), "/Users/aladahmoore/Desktop/ProjectDraft/canada.png")
 
 #create variable to hold selected menu item
 selectedTimeZone = StringVar()
