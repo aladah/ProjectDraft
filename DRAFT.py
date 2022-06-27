@@ -64,7 +64,7 @@ timeZone(pytz.timezone("America/Vancouver"), "/Users/aladahmoore/Desktop/Project
 #create variable to hold selected menu item
 selectedTimeZone = StringVar()
 #set default to an array item
-selectedTimeZone.set(timeZoneNames[1])
+selectedTimeZone.set(timeZoneNames[2])
 #create menu atttached to root, picked item is held in what variable, and displays array timeZoneNames
 timeZoneMenu = OptionMenu(root, selectedTimeZone, *timeZoneNames)
 #display the menu
