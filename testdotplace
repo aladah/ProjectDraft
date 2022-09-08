@@ -1,0 +1,111 @@
+from time import *
+#for gui components
+from tkinter import * 
+#for datetime objects
+from datetime import datetime
+import tkinter as tk
+#for timezone conversions
+import pytz
+# for time related tasks
+import time
+# to use file paths 
+from PIL import Image, ImageTk
+#import ipydatetime
+from tktimepicker import SpinTimePickerModern
+
+from dateutil import tz
+
+from tkcalendar import *
+
+
+#top level window
+root = Tk()
+root.title("Time Zone Comparator")
+root.geometry("500x400")
+
+titleLabel = Label(root, text="Time Zone Comparator", font=25)
+#first timezone to compare if its...
+otherTime = StringVar()
+otherTimeLabel = Label(root, textvariable=otherTime)
+otherTimeLabel.place(x=0,y=0)
+#second timezone to compare message to user then its...
+anotherTime = StringVar()
+anotherTimeLabel = Label(root, textvariable=anotherTime)
+anotherTimeLabel.place(x=0,y=1)
+#function when user presses submit button
+def comparator():
+    #save date selected by user using date picker
+    s = cal.get_date()
+    #parse out month, day, year
+    month1 = s.month
+    day1 = s.day
+    year1 = s.year
+
+    tz1 = tz.gettz(tzSelected.get())
+    stringtz1 = tzSelected.get()
+    hour1 = hour_picker.get()
+    print(hour1)
+    minute1 = minute_picker.get()
+    tz2 = tz.gettz(tzSelected2.get())
+    stringtz2 = tzSelected2.get()
+   
+    #create date time object in canadian time zone for future and now
+    x = datetime(year1,month1,day1,hour1,minute1).astimezone(tz1)
+    stringXX = x.strftime("If the date and time  is %b %d, %Y @ %H:%M ")
+    
+    xxx = x.astimezone(tz2)
+    stringXXX = xxx.strftime("Then the date and time is %b %d, %Y @ %H:%M ")
+
+    otherTime.set(" " +stringXX +" in " +stringtz1)
+    anotherTime.set(" "+stringXXX +" in " +stringtz2)
+
+homeLabel = Label(root, text="Choose date to compare")  
+homeLabel.place(x=0,y=3)
+#date picker object
+cal=DateEntry(root,selectmode='day',year=datetime.now().year, month=datetime.now().month, day=datetime.now().day, date_pattern='MM/dd/yyyy', foreground="blue")
+cal.place(x=1,y=3)
+
+#hour of first time zone
+hour_picker = IntVar()
+hour_picker.set(23)
+changeHourLabel = Label(root, text="Select Time to compare")
+changeHourLabel.place(x=0,y=4)
+
+#entry box label
+hLabel = Label(root, text="HH:")
+hLabel.place(x=1,y=4)
+#entry box for hours
+entryHours = Entry(root, textvariable=hour_picker, width=2)
+entryHours.place(x=2,y=4)
+
+#minute of first time zone
+minute_picker = IntVar()
+minute_picker.set(59)
+
+#label for minute entry box
+mLabel = Label(root, text="MM")
+mLabel.place(x=3,y=4)
+#entry box for minutes
+entryMinutes = Entry(root, textvariable=minute_picker, width=2)
+entryMinutes.place(x=4,y=4)
+#timezones for comparison
+timeZones = ["America/Montreal", "Asia/Bangkok", "Europe/Berlin"]
+tzSelected = StringVar()
+tzSelected.set(timeZones[0])
+#time zone menu
+tzMenu = OptionMenu(root, tzSelected, *timeZones )
+tzLabel = Label(root, text="Select Home TimeZone")
+tzLabel.place(x=0,y=0)
+tzMenu.place(x=1,y=0)
+#timezone to compare
+timeZone2Label = Label(root, text= "Select TimeZone to Compare")
+timeZone2Label.place(x=0,y=5)
+timeZones2 = ["America/Montreal", "Asia/Bangkok", "Europe/Berlin"]
+tzSelected2 = StringVar()
+tzSelected2.set(timeZones2[2])
+tzMenu2 = OptionMenu(root, tzSelected2, *timeZones2 )
+tzMenu2.place(x=1,y=5)
+#submit button
+submitDateTime = Button(root, text="Submit", command=comparator).place(x=1,y=6)
+
+root.mainloop()

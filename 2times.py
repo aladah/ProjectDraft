@@ -134,5 +134,9 @@ timeZoneMenu2.grid(row=4, column=6)
 selectButton2 = tkinter.Button(root, text='Submit', command=getZone)
 selectButton2.config(width=20, height=2)
 selectButton2.grid(row=5, column=6)
-#run the main window until user exits
+
+
+
+
+#run the main window until user exits 
 root.mainloop()
